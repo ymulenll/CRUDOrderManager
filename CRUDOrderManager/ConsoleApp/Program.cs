@@ -23,14 +23,16 @@ namespace ConsoleApp
 
         private static void CreateService()
         {
-            ILog log = new ConsoleLogAdapter();
+            IUserInteraction userInteraction = new ConsoleUserInteraction();
 
-            ICreateReadUpdateDelete<Order> crudOrder = new EmptyCreateReadUpdateDelete<Order>();
-            ICreateReadUpdateDelete<Order> crudOrderLogDecorator = new CrudLoggingDecorator<Order>(crudOrder, log);
+            ICreateReadUpdate<Order> cruOrder = new EmptyCreateReadUpdateDelete<Order>();
 
-            OrderController orderController = new OrderController(crudOrderLogDecorator);
+            IDelete<Order> deleteOrder = new EmptyCreateReadUpdateDelete<Order>();
+            IDelete<Order> deleteOrderConfirmationDecorator = new DeleteConfirmationDecorator<Order>(deleteOrder, userInteraction);
 
-            orderController.GetSingleOrder(1);
+            OrderController orderController = new OrderController(cruOrder, deleteOrderConfirmationDecorator);
+
+            orderController.DeleteOrder(new Order());
         }
     }
 }

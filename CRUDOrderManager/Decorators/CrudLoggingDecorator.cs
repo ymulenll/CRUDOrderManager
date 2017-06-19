@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace Decorators
 {
-    public class CrudLoggingDecorator<TEntity> : ICreateReadUpdateDelete<TEntity>
+    public class CrudLoggingDecorator<TEntity> : ICreateReadUpdate<TEntity>, IDelete<TEntity>
     {
-        private readonly ICreateReadUpdateDelete<TEntity> decoratedCrud;
+        private readonly ICreateReadUpdate<TEntity> decoratedCru;
+        private readonly IDelete<TEntity> decoratedDelete;
         private readonly ILog log;
 
-        public CrudLoggingDecorator(ICreateReadUpdateDelete<TEntity> decoratedCrud, ILog log)
+        public CrudLoggingDecorator(ICreateReadUpdate<TEntity> decoratedCru, IDelete<TEntity> decoratedDelete, ILog log)
         {
-            this.decoratedCrud = decoratedCrud;
+            this.decoratedCru = decoratedCru;
+            this.decoratedDelete = decoratedDelete;
             this.log = log;
         }
 
@@ -23,28 +25,28 @@ namespace Decorators
         {
             log.LogInfo($"Creating entity of type {typeof(TEntity).Name}");
 
-            this.decoratedCrud.Create(entity);
+            this.decoratedCru.Create(entity);
         }
 
         public void Delete(TEntity entity)
         {
             log.LogInfo($"Deleting entity of type {typeof(TEntity).Name}");
 
-            this.decoratedCrud.Delete(entity);
+            this.decoratedDelete.Delete(entity);
         }
 
         public IEnumerable<TEntity> ReadAll()
         {
             log.LogInfo($"Reading all entities of type {typeof(TEntity).Name}");
 
-            return decoratedCrud.ReadAll();
+            return decoratedCru.ReadAll();
         }
 
         public TEntity ReadOne(int id)
         {
             log.LogInfo($"Reading entity of type {typeof(TEntity).Name} with id {id}");
 
-            return decoratedCrud.ReadOne(id);
+            return decoratedCru.ReadOne(id);
         }
 
         public void Update(TEntity entity)

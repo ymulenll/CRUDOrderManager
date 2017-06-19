@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsoleLogAdapter.cs" />
+    <Compile Include="ConsoleUserInteraction.cs" />
     <Compile Include="CrudLoggingDecorator.cs" />
+    <Compile Include="DeleteConfirmationDecorator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

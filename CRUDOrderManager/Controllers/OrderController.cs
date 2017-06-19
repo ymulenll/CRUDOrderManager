@@ -10,36 +10,40 @@ namespace Controllers
 {
     public class OrderController
     {
-        private readonly ICreateReadUpdateDelete<Order> orderCRUD;
+        private readonly ICreateReadUpdate<Order> orderCRU;
 
-        public OrderController(ICreateReadUpdateDelete<Order> orderCRUD)
+        private readonly IDelete<Order> orderDelete;
+
+        public OrderController(ICreateReadUpdate<Order> orderCRU, IDelete<Order> orderDelete)
         {
-            this.orderCRUD = orderCRUD;
+            this.orderCRU = orderCRU;
+
+            this.orderDelete = orderDelete;
         }
 
         public void CreateOrder(Order order)
         {
-            orderCRUD.Create(order);
+            orderCRU.Create(order);
         }
 
         public Order GetSingleOrder(int id)
         {
-            return orderCRUD.ReadOne(id);
+            return orderCRU.ReadOne(id);
         }
 
         public IEnumerable<Order> GetAllOrders()
         {
-            return orderCRUD.ReadAll();
+            return orderCRU.ReadAll();
         }
 
         public void UpdateOrder(Order order)
         {
-            orderCRUD.Update(order);
+            orderCRU.Update(order);
         }
 
         public void DeleteOrder(Order order)
         {
-            orderCRUD.Delete(order);
+            orderDelete.Delete(order);
         }
     }
 }
