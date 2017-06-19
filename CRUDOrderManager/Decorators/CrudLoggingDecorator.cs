@@ -8,16 +8,18 @@ using System.Threading.Tasks;
 
 namespace Decorators
 {
-    public class CrudLoggingDecorator<TEntity> : ICreateReadUpdate<TEntity>, IDelete<TEntity>
+    public class CrudLoggingDecorator<TEntity> : ICreateUpdate<TEntity>, IDelete<TEntity>, IRead<TEntity>
     {
-        private readonly ICreateReadUpdate<TEntity> decoratedCru;
+        private readonly ICreateUpdate<TEntity> decoratedCu;
         private readonly IDelete<TEntity> decoratedDelete;
+        private readonly IRead<TEntity> decoratedRead;
         private readonly ILog log;
 
-        public CrudLoggingDecorator(ICreateReadUpdate<TEntity> decoratedCru, IDelete<TEntity> decoratedDelete, ILog log)
+        public CrudLoggingDecorator(ICreateUpdate<TEntity> decoratedCu, IDelete<TEntity> decoratedDelete, IRead<TEntity> decoratedRead, ILog log)
         {
-            this.decoratedCru = decoratedCru;
+            this.decoratedCu = decoratedCu;
             this.decoratedDelete = decoratedDelete;
+            this.decoratedRead = decoratedRead;
             this.log = log;
         }
 
@@ -25,7 +27,7 @@ namespace Decorators
         {
             log.LogInfo($"Creating entity of type {typeof(TEntity).Name}");
 
-            this.decoratedCru.Create(entity);
+            this.decoratedCu.Create(entity);
         }
 
         public void Delete(TEntity entity)
@@ -39,14 +41,14 @@ namespace Decorators
         {
             log.LogInfo($"Reading all entities of type {typeof(TEntity).Name}");
 
-            return decoratedCru.ReadAll();
+            return decoratedRead.ReadAll();
         }
 
         public TEntity ReadOne(int id)
         {
             log.LogInfo($"Reading entity of type {typeof(TEntity).Name} with id {id}");
 
-            return decoratedCru.ReadOne(id);
+            return decoratedRead.ReadOne(id);
         }
 
         public void Update(TEntity entity)

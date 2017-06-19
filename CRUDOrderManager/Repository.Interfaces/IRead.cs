@@ -6,14 +6,10 @@ using System.Threading.Tasks;
 
 namespace Repository.Interfaces
 {
-    public interface ICreateReadUpdate<TEntity>
+    public interface IRead<TEntity>
     {
-        void Create(TEntity entity);
-
         TEntity ReadOne(int id);
 
         IEnumerable<TEntity> ReadAll();
-
-        void Update(TEntity entity);
     }
 }

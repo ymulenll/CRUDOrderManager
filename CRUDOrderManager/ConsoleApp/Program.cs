@@ -25,12 +25,12 @@ namespace ConsoleApp
         {
             IUserInteraction userInteraction = new ConsoleUserInteraction();
 
-            ICreateReadUpdate<Order> cruOrder = new EmptyCreateReadUpdateDelete<Order>();
+            var crudOrder = new EmptyCreateReadUpdateDelete<Order>();
 
-            IDelete<Order> deleteOrder = new EmptyCreateReadUpdateDelete<Order>();
-            IDelete<Order> deleteOrderConfirmationDecorator = new DeleteConfirmationDecorator<Order>(deleteOrder, userInteraction);
-
-            OrderController orderController = new OrderController(cruOrder, deleteOrderConfirmationDecorator);
+            IDelete<Order> deleteOrderConfirmationDecorator = new DeleteConfirmationDecorator<Order>(crudOrder, userInteraction);
+            IRead<Order> readOrderCachingDecorator = new ReadCachingDecorator<Order>(crudOrder);
+            
+            OrderController orderController = new OrderController(crudOrder, deleteOrderConfirmationDecorator, readOrderCachingDecorator);
 
             orderController.DeleteOrder(new Order());
         }
