@@ -10,15 +10,15 @@ namespace Controllers
 {
     public class OrderController
     {
-        private readonly ICreateUpdate<Order> orderCU;
+        private readonly ISave<Order> orderSave;
 
         private readonly IDelete<Order> orderDelete;
 
         private readonly IRead<Order> orderRead;
 
-        public OrderController(ICreateUpdate<Order> orderCU, IDelete<Order> orderDelete, IRead<Order> orderRead)
+        public OrderController(ISave<Order> orderSave, IDelete<Order> orderDelete, IRead<Order> orderRead)
         {
-            this.orderCU = orderCU;
+            this.orderSave = orderSave;
 
             this.orderDelete = orderDelete;
 
@@ -27,7 +27,7 @@ namespace Controllers
 
         public void CreateOrder(Order order)
         {
-            orderCU.Create(order);
+            orderSave.Save(order);
         }
 
         public Order GetSingleOrder(int id)
@@ -42,7 +42,7 @@ namespace Controllers
 
         public void UpdateOrder(Order order)
         {
-            orderCU.Update(order);
+            orderSave.Save(order);
         }
 
         public void DeleteOrder(Order order)

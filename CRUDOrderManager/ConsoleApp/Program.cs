@@ -24,13 +24,15 @@ namespace ConsoleApp
         private static void CreateService()
         {
             IUserInteraction userInteraction = new ConsoleUserInteraction();
+            ISave<AuditInfo> auditSave = new EmptyCreateReadUpdateDelete<AuditInfo>();
 
             var crudOrder = new EmptyCreateReadUpdateDelete<Order>();
 
             IDelete<Order> deleteOrderConfirmationDecorator = new DeleteConfirmationDecorator<Order>(crudOrder, userInteraction);
             IRead<Order> readOrderCachingDecorator = new ReadCachingDecorator<Order>(crudOrder);
-            
-            OrderController orderController = new OrderController(crudOrder, deleteOrderConfirmationDecorator, readOrderCachingDecorator);
+            ISave<Order> saveOrderAuditingDecorator = new SaveAuditingDecorator<Order>(crudOrder, auditSave);
+
+            OrderController orderController = new OrderController(saveOrderAuditingDecorator, deleteOrderConfirmationDecorator, readOrderCachingDecorator);
 
             orderController.DeleteOrder(new Order());
         }

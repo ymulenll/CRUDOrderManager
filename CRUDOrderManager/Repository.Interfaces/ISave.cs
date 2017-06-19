@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Repository.Interfaces
 {
-    public interface ICreateUpdate<TEntity>
+    public interface ISave<TEntity>
     {
-        void Create(TEntity entity);
-
-        void Update(TEntity entity);
+        void Save(TEntity entity);
     }
 }

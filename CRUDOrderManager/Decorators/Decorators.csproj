@@ -40,12 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuditInfo.cs" />
     <Compile Include="ConsoleLogAdapter.cs" />
     <Compile Include="ConsoleUserInteraction.cs" />
     <Compile Include="CrudLoggingDecorator.cs" />
     <Compile Include="DeleteConfirmationDecorator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadCachingDecorator.cs" />
+    <Compile Include="SaveAuditingDecorator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain.Interfaces\Domain.Interfaces.csproj">
