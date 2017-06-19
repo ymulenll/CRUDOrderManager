@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>ConsoleApp</RootNamespace>
     <AssemblyName>ConsoleApp</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -53,6 +53,14 @@
     <ProjectReference Include="..\Controllers\Controllers.csproj">
       <Project>{F3413163-8E6E-4698-BC04-B90E09306AF6}</Project>
       <Name>Controllers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Decorators\Decorators.csproj">
+      <Project>{9b075209-cd8b-43c4-b96d-48d2cf00bdcf}</Project>
+      <Name>Decorators</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain.Interfaces\Domain.Interfaces.csproj">
+      <Project>{61f39358-8924-4462-b644-753b2fb68f31}</Project>
+      <Name>Domain.Interfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{d1a7e0ee-b90c-4d42-a12a-eb4a4bca1255}</Project>

@@ -21,7 +21,7 @@ namespace Repository.Implementation
 
         public IEnumerable<TEntity> ReadAll()
         {
-            return Array.Empty<TEntity>();
+            return new TEntity[0];
         }
 
         public TEntity ReadOne(int id)
