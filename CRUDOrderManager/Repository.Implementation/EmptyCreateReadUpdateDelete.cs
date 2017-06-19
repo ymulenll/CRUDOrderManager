@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Repository.Implementation
 {
-    public class Crud<TEntity> : ICreateReadUpdateDelete<TEntity>
+    public class EmptyCreateReadUpdateDelete<TEntity> : ICreateReadUpdateDelete<TEntity>
     {
         public void Create(TEntity entity)
         {

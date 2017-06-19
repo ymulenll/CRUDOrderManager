@@ -19,7 +19,7 @@ namespace ConsoleApp
 
         private static void CreateService()
         {
-            ICreateReadUpdateDelete<Order> crudOrder = new Crud<Order>();
+            ICreateReadUpdateDelete<Order> crudOrder = new EmptyCreateReadUpdateDelete<Order>();
             OrderController orderController = new OrderController(crudOrder);
         }
     }

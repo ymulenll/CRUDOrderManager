@@ -27,6 +27,11 @@ namespace Controllers
             return orderCRUD.ReadOne(id);
         }
 
+        public IEnumerable<Order> GetAllOrders()
+        {
+            return orderCRUD.ReadAll();
+        }
+
         public void UpdateOrder(Order order)
         {
             orderCRUD.Update(order);
