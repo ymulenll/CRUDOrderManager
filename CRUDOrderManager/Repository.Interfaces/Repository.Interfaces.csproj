@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IInterfaceSoupAntiPattern.cs" />
     <Compile Include="ISave.cs" />
     <Compile Include="IDelete.cs" />
     <Compile Include="IRead.cs" />
