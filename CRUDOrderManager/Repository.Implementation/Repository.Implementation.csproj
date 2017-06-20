@@ -41,8 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Deleter.cs" />
     <Compile Include="EmptyCreateReadUpdateDelete.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reader.cs" />
+    <Compile Include="Saver.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Repository.Interfaces\Repository.Interfaces.csproj">

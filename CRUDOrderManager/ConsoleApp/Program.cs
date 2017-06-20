@@ -16,12 +16,22 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            CreateService();
+            CreateSingleService();
+            //CreateSeparateServices();
 
             Console.ReadKey();
         }
 
-        private static void CreateService()
+        static OrderController CreateSeparateServices()
+        {
+            var reader = new Reader<Order>();
+            var saver = new Saver<Order>();
+            var deleter = new Deleter<Order>();
+
+            return new OrderController(saver, deleter, reader);
+        }
+
+        private static void CreateSingleService()
         {
             IUserInteraction userInteraction = new ConsoleUserInteraction();
             ISave<AuditInfo> auditSave = new EmptyCreateReadUpdateDelete<AuditInfo>();
