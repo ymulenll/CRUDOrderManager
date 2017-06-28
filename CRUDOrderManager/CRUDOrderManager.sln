@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Decorators", "Decorators\De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Interfaces", "Domain.Interfaces\Domain.Interfaces.csproj", "{61F39358-8924-4462-B644-753B2FB68F31}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{4722916E-04F5-4BB7-B19B-315278EBD7D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{61F39358-8924-4462-B644-753B2FB68F31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61F39358-8924-4462-B644-753B2FB68F31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61F39358-8924-4462-B644-753B2FB68F31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4722916E-04F5-4BB7-B19B-315278EBD7D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4722916E-04F5-4BB7-B19B-315278EBD7D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4722916E-04F5-4BB7-B19B-315278EBD7D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4722916E-04F5-4BB7-B19B-315278EBD7D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
