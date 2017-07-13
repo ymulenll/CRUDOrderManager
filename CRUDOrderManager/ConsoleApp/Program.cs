@@ -1,4 +1,6 @@
 ﻿using Controllers;
+using Decorators;
+using Domain.Interfaces;
 using Model;
 using Repository.Implementation;
 using Repository.Interfaces;
@@ -14,13 +16,35 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            CreateService();
+            CreateSingleService();
+            //CreateSeparateServices();
+
+            Console.ReadKey();
         }
 
-        private static void CreateService()
+        static OrderController CreateSeparateServices()
         {
-            ICreateReadUpdateDelete<Order> crudOrder = new EmptyCreateReadUpdateDelete<Order>();
-            OrderController orderController = new OrderController(crudOrder);
+            var reader = new Reader<Order>();
+            var saver = new Saver<Order>();
+            var deleter = new Deleter<Order>();
+
+            return new OrderController(saver, deleter, reader);
+        }
+
+        private static void CreateSingleService()
+        {
+            IUserInteraction userInteraction = new ConsoleUserInteraction();
+            ISave<AuditInfo> auditSave = new EmptyCreateReadUpdateDelete<AuditInfo>();
+
+            var crudOrder = new EmptyCreateReadUpdateDelete<Order>();
+
+            IDelete<Order> deleteOrderConfirmationDecorator = new DeleteConfirmationDecorator<Order>(crudOrder, userInteraction);
+            IRead<Order> readOrderCachingDecorator = new ReadCachingDecorator<Order>(crudOrder);
+            ISave<Order> saveOrderAuditingDecorator = new SaveAuditingDecorator<Order>(crudOrder, auditSave);
+
+            OrderController orderController = new OrderController(saveOrderAuditingDecorator, deleteOrderConfirmationDecorator, readOrderCachingDecorator);
+
+            orderController.DeleteOrder(new Order());
         }
     }
 }

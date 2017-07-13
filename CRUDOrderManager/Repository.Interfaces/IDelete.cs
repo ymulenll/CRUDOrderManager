@@ -6,16 +6,8 @@ using System.Threading.Tasks;
 
 namespace Repository.Interfaces
 {
-    public interface ICreateReadUpdateDelete<TEntity>
+    public interface IDelete<TEntity>
     {
-        void Create(TEntity entity);
-
-        TEntity ReadOne(int id);
-
-        IEnumerable<TEntity> ReadAll();
-
-        void Update(TEntity entity);
-
         void Delete(TEntity entity);
     }
 }

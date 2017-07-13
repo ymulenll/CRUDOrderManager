@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C3C3E09B-3C62-450A-876A-E51306F5AEF9}</ProjectGuid>
+    <ProjectGuid>{9B075209-CD8B-43C4-B96D-48D2CF00BDCF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Repository.Interfaces</RootNamespace>
-    <AssemblyName>Repository.Interfaces</AssemblyName>
+    <RootNamespace>Decorators</RootNamespace>
+    <AssemblyName>Decorators</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,11 +40,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IInterfaceSoupAntiPattern.cs" />
-    <Compile Include="ISave.cs" />
-    <Compile Include="IDelete.cs" />
-    <Compile Include="IRead.cs" />
+    <Compile Include="AuditInfo.cs" />
+    <Compile Include="ConsoleLogAdapter.cs" />
+    <Compile Include="ConsoleUserInteraction.cs" />
+    <Compile Include="CrudLoggingDecorator.cs" />
+    <Compile Include="DeleteConfirmationDecorator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadCachingDecorator.cs" />
+    <Compile Include="SaveAuditingDecorator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain.Interfaces\Domain.Interfaces.csproj">
+      <Project>{61f39358-8924-4462-b644-753b2fb68f31}</Project>
+      <Name>Domain.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository.Interfaces\Repository.Interfaces.csproj">
+      <Project>{c3c3e09b-3c62-450a-876a-e51306f5aef9}</Project>
+      <Name>Repository.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
