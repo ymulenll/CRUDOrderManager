@@ -50,6 +50,8 @@ namespace Decorators
         public void Update(TEntity entity)
         {
             log.LogInfo($"Updating entity of type {typeof(TEntity).Name}");
+
+            this.decoratedCrud.Update(entity);
         }
     }
 }
